@@ -128,72 +128,20 @@ barplot(c(choose(4,4)*choose(4,0),choose(4,3)*choose(4,1),choose(4,2)*choose(4,2
 
 > * $H_a$: A senhora consegue distinguir.
 
-> * Estatística do teste: Total de acertos ($X$)
+> * Usaremos o total de acertos ($x$) como resumo do resultado do experimento (estatística do teste).
 
-> * Para decidir, precisamos primeiramente da distribuição de probabilidade da estatística do teste quando $H_0$ é verdadeira.
+> * Para decidir, precisamos avaliar como a estatística do teste se comporta quando $H_0$ é verdadeira (resultados possíveis e respectivas probabilidades).
 
-## Distribuição Hipergeométrica {.build}
-
-* População dividida em duas características
-
-> * Extrações casuais sem reposição
-
-> * $N$ objetos
-
-> * $r$ têm a característica A
-
-> * $N-r$ têm a característica B 
-
-> * um grupo de $n$ elementos é escolhido ao acaso, dentre os $N$ possíveis, sem reposição. 
-
-> Queremos calcular a probabilidade de que este grupo de $n$ elementos contenha $x$ elementos com a característica A.
-
-## Distribuição Hipergeométrica {.smaller}
-
-  Elemento escolhido                     | Característica $A$  | Característica $B$|   Total    
-------------------------| ------------------------- | ------------------------- |---------- 
-**sim** | $x$                       |            $n-x$            | $n$ 
-**não** |                     |                       | $N-n$ 
-            **Total**              | $r$                   | $N-r$                     | $N$      
-
-
-Seja $X$ a v.a. que representa o número de elementos com a característica A dentre os $n$ escolhidos ao acaso. 
-
-Então dizemos que $X$ segue uma distribuição **Hipergeométrica** com parâmetros $N,n,r$, ou seja, $X \sim Hip(N,n,r)$. 
-
-A probabilidade de se observar $x$ é dada por: $$P(X=x)=\frac{\binom{r}{x}\binom{N-r}{n-x}}{\binom{N}{n}}\,,\quad\quad0\leq x \leq min\{r,n\}$$
 
 
 
 ## Teste de hipótese
 
-* População dividida em duas características: chá primeiro, leite primeiro. 
-* Extrações casuais sem reposição
-* $N$ objetos: 8 xícaras
-* $r$ têm a característica A: 4 com chá primeiro
-* $N-r$ têm a característica B: 4 com leite primeiro   
-* Um grupo de $n$ elementos é **escolhido ao acaso**, dentre os $N$ possíveis, sem reposição: a senhora escolhe 4 xícaras dentre as 8.
+Queremos calcular a probabilidade de que dentre as 4 xícaras escolhidas ao acaso (sob $H_0$) $x$ tenham de fato o chá colocado primeiro. 
 
-## Teste de hipótese
+A probabilidade de se observar $x$ nessas condições (sob $H_0$) é dada por: 
 
-Queremos calcular a probabilidade de que dentre as 4 xícaras escolhidas $x$ tenham de fato o chá colocado primeiro. 
-
-Seja $X$ a v.a. que representa o número de xícaras com chá primeiro dentre as 4 selecionadas.
-
-Então dizemos que $X$ segue uma distribuição **Hipergeométrica** com parâmetros $N,n,r$, ou seja, $X \sim Hip(N=8,n=4,r=4)$.
-
-A probabilidade de se observar $x$ é dada por: 
-$$P(X=x)=\frac{\binom{4}{x}\binom{4}{n-x}}{\binom{8}{4}}, \qquad 0\leq x \leq 4$$ 
-
-## Teste de hipótese
-
-* $H_0$: A senhora não consegue distinguir entre chá ou leite primeiro e escolhe ao acaso durante o experimento.
-
-* Estatística do teste: Total de acertos ($X$)
-
-* Distribuição de probabilidade da estatística do teste, quando $H_0$ é verdadeira.
-
-$$P(X=x)=\frac{\binom{4}{x}\binom{4}{4-x}}{\binom{8}{4}}, \qquad 0\leq x \leq 4$$
+$$\frac{\binom{4}{x}\binom{4}{n-x}}{\binom{8}{4}}, \qquad 0\leq x \leq 4$$ 
 
 
 ## Teste de Hipótese
@@ -242,5 +190,67 @@ $$P(X=3)+P(X=4)=`r as.character(p3)` + `r as.character(p4)` = `r as.character(pv
 
 > Se este valor for considerado alto, não temos evidências, baseando-se no experimento realizado, para rejeitar $H_0$. 
 
+## Experimento com Coca-Cola
 
+
+  Resposta                      | Copo tem Coca-cola  | Copo tem Coca Zero|   Total    
+------------------------| ------------------------- | ------------------------- |---------- 
+**Aluno diz coca-cola** | $x$                       |          $n-x$              | $n$ 
+**Aluno diz coca zero** |                     |                        | 
+            **Total**              | $n$                   | $N-n$                     | $N$      
+
+* $N$ copos foram preparados
+
+* $n$ com Coca-Cola
+
+* $N-n$ com Coca Zero
+
+
+## Experimento com Coca-Cola
+
+
+
+* O aluno é informado do total de copos com Coca-Cola e do total de copos com Coca Zero.
+
+* Os copos são apresentados em ordem aleatória para o aluno provar e escolher $n$ que ele acha que tem Coca-Cola.
+
+* O experimento é planejado de maneira que as margens da tabela são fixas, pois o aluno é informado do total de copos preparados de cada maneira.
+
+* Portanto, se soubermos $x$, sabemos todas as outras caselas da tabela. 
+
+* Desta forma, usaremos $x$ para avaliar se o experimento trás evidências contra ou a favor da hipótese nula.
+
+## Teste de hipótese {.build}
+
+* $H_0$: A senhora não consegue distinguir entre chá ou leite primeiro e escolhe ao acaso durante o experimento.
+
+> * $H_a$: A senhora consegue distinguir.
+
+> * Usaremos o total de acertos ($x$) como resumo do resultado do experimento (estatística do teste).
+
+> * Para decidir, precisamos avaliar como a estatística do teste se comporta quando $H_0$ é verdadeira (resultados possíveis e respectivas probabilidades).
+
+
+
+
+## Teste de hipótese
+
+Queremos calcular a probabilidade de que dentre as $n$ xícaras escolhidas ao acaso (sob $H_0$) $x$ tenham de fato Coca-Cola. 
+
+A probabilidade de se observar $x$ nessas condições (sob $H_0$) é dada por: 
+
+$$\frac{\binom{n}{x}\binom{N-n}{n-x}}{\binom{N}{n}}, \qquad 0\leq x \leq n$$ 
+
+## Teste de hipótese
+
+Calcula-se a probabilidade de observarmos $x$ e as probabilidades de observarmos valos maiores do que $x$ (até o máximo de acertos possíveis: $n$).
+
+A soma dessas probabilidades é o **valor de p**, que resume a evidência contra $H_0$. Se o valor de $p$ é pequeno, dizemos que encontramos evidências, através do experimento, para rejeitar $H_0$.
+
+
+## Leituras
+
+* David Salsburg - Uma senhora toma chá: Como a estatística revolucionou a ciência no século XX
+
+* [Dama apreciadora de chá](https://pt.wikipedia.org/wiki/Dama_apreciadora_de_chá)
 
